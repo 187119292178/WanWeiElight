@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Elight.WinForm": {
+      "commandName": "Project",
+      "nativeDebugging": false,
+      "hotReloadEnabled": true,
+      "sqlDebugging": false,
+      "jsWebView2Debugging": false,
+      "remoteDebugEnabled": false
+    }
+  }
+}

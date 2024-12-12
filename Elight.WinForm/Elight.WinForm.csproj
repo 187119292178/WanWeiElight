@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>net8.0-windows;net462</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ApplicationIcon>favicon.ico</ApplicationIcon>
+		<!-- 发布单文件的时候使用压缩，可缩小文件大小，节省空间 -->
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<StartupObject>Elight.WinForm.Program</StartupObject>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Update="Configs\**">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="License\**">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<Content Include="favicon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Owin" Version="4.2.2" />
+	  <PackageReference Include="NPOI" Version="2.7.1" />
+	  <PackageReference Include="Owin" Version="1.0.0" />
+	  <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+	  <PackageReference Include="System.Speech" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup> 
+		<ProjectReference Include="..\Elight.Logic\Elight.Logic.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Interop.LabelManager2">
+	    <HintPath>..\lib\Interop.LabelManager2.dll</HintPath>
+	  </Reference>
+	  <Reference Include="TIMS.Common">
+	    <HintPath>..\..\honRunTaiYang\Repos\03.WMS\1.Dev\TIMS\trunk\TIMS.Utility.DLL\X64\TIMS.Common.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+
+	<!-- 自动生成 -->
+	<ItemGroup>
+		<Compile Update="Page\DefaultPage.cs" />
+		<Compile Update="Page\WIP\PackingBoxPage.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Page\WIP\PackingPageDate.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Configs\db.sqlite">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+	  <PackageReference Include="Uno.UI">
+	    <Version>5.4.39</Version>
+	  </PackageReference>
+	</ItemGroup>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties configs_4config_1json__JsonSchema="" />
+		</VisualStudio>
+	</ProjectExtensions>
+</Project>
